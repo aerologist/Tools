@@ -1,0 +1,16 @@
+{
+  "drift_cross_section_parameters" : "Drift cross-section parameters",
+  "drift_cross_section": "Drift cross-section",
+  "arched_shape": "Arched shape",
+  "rectangular_shape": "Rectangular shape",
+  "trapecoidal_shape": "Trapezoidal shape",
+  "round_shape": "Round_shape",
+  "width": "Width",
+  "height": "Height",
+  "diameter": "Diameter",
+  "median": "Median",
+  "area": "Area",
+  "perimeter": "Perimeter",
+  "meters": "m",
+  "square_meters": "m²"
+}
