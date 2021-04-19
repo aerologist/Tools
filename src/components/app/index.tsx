@@ -25,6 +25,9 @@ const App = () => {
 
   React.useEffect(() => {
     setSizeScreen();
+    window.addEventListener('resize', () => {
+      setSizeScreen();
+    });
   }, [])
 
   return (

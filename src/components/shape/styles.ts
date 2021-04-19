@@ -15,13 +15,14 @@ export const Shape = styled.div`
     background: #FFFFFF;
     border-radius: 4px;
     margin-right: 28px;
+    margin-bottom: 28px;
     h2 {
         font-style: normal;
         font-weight: 500;
         font-size: 20px;
         line-height: 24px;
         letter-spacing: 0.15px;
-        margin-left: 3px;
+        margin: 0 0 16px 3px;
         color: #3A3A3A;
     }
     @media (max-width: 767px) {
@@ -114,6 +115,7 @@ export const Result = styled.div`
         font-weight: normal;
         font-size: 14px;
         line-height: 20px;
+        margin-bottom: 0;
         color: rgba(58, 58, 58, 0.74);
         margin-top: 6px;
     }

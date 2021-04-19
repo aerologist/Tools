@@ -31,6 +31,7 @@ export const AppWrapper = styled.div`
 
 export const Forms = styled.div`
   display: flex;
+  flex-wrap: wrap;
   @media (max-width: 767px) {
     justify-content: center;
   }
