@@ -39,18 +39,20 @@ function ArchedShape({active}: PropsTab) {
         focusInputWidth: false
     })
 
-    calculation.heightSmall = Math.min(calculation.heightSmall, calculation.heightBig);
+    if (calculation.heightSmall > calculation.heightBig) {
+        calculation.heightBig = calculation.heightSmall
+    }
 
     const onValueSmallHeight = (e: any) => {
-        setCalculation({...calculation, heightSmall: e.target.value});
+        setCalculation({...calculation, heightSmall: Math.abs(e.target.value)});
     }
 
     const onValueBigHeight = (e: any) => {
-        setCalculation({...calculation, heightBig: e.target.value});
+        setCalculation({...calculation, heightBig: Math.abs(e.target.value)});
     }
 
     const onValueWidth = (e: any) => {
-        setCalculation({...calculation, width: e.target.value});
+        setCalculation({...calculation, width: Math.abs(e.target.value)});
     }
 
     if (!calculation.heightSmall || !calculation.width) {

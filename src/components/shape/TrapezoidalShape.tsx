@@ -44,15 +44,15 @@ function TrapezoidalShape({active}: PropsTab) {
     })
 
     const onValueMediana = (e: any) => {
-        setCalculation({...calculation, mediana: e.target.value});
+        setCalculation({...calculation, mediana: Math.abs(e.target.value)});
     }
 
     const onValueHeight = (e: any) => {
-        setCalculation({...calculation, height: e.target.value});
+        setCalculation({...calculation, height: Math.abs(e.target.value)});
     }
 
     const onValueWidth = (e: any) => {
-        setCalculation({...calculation, width: e.target.value});
+        setCalculation({...calculation, width: Math.abs(e.target.value)});
     }
 
     if (calculation.mediana && calculation.height && !calculation.width) {

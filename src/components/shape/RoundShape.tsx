@@ -30,7 +30,7 @@ function RoundShape({active}: PropsTab) {
     })
 
     const onValueDiameter = (e: any) => {
-        setCalculation({...calculation, diameter: e.target.value});
+        setCalculation({...calculation, diameter: Math.abs(e.target.value.replace(/,/g, ''))});
     }
 
     calculation.square = (Math.ceil(((calculation.diameter / 2 ) * (calculation.diameter / 2 ) * 3.1415926535) * 10) / 10).toString().replace('.', ',');

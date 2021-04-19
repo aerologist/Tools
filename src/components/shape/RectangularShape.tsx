@@ -35,11 +35,11 @@ function RectangularShape({active}: PropsTab) {
     })
 
     const onValueBigHeight = (e: any) => {
-        setCalculation({...calculation, bigHeight: e.target.value});
+        setCalculation({...calculation, bigHeight: Math.abs(e.target.value)});
     }
 
     const onValueWidth = (e: any) => {
-        setCalculation({...calculation, width: e.target.value});
+        setCalculation({...calculation, width: Math.abs(e.target.value)});
     }
 
     if (!calculation.bigHeight || !calculation.width) {
