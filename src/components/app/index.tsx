@@ -11,24 +11,31 @@ import TrapezoidalImg from '../../assets/icons/Trapezoidal.svg';
 const App = () => {
   const {t} = useTranslation();
 
-  const [activeTabs, setActiveTabs] = React.useState<number>(0);
+  const [activeTabs, setActiveTabs] = React.useState<number>(4);
 
   const imgTabs: string[] = [ArchedImg, RectangularImg, RoundImg, TrapezoidalImg];
 
-  const setSizeScreen = () => {
+  React.useEffect(() => {
     if (document.documentElement.clientWidth >= 767) {
-      setActiveTabs(0);
+      setActiveTabs(4);
     } else {
-      setActiveTabs(1);
+      setActiveTabs(0);
     }
-  }
+  }, [])
 
   React.useEffect(() => {
-    setSizeScreen();
     window.addEventListener('resize', () => {
-      setSizeScreen();
+      if (document.documentElement.clientWidth >= 767) {
+        setActiveTabs(4);
+      } else {
+        if (activeTabs === 4) {
+          setActiveTabs(0);
+        } else {
+          setActiveTabs(activeTabs);
+        }
+      }
     });
-  }, [])
+  }, [activeTabs])
 
   return (
     <AppWrapper>
@@ -42,7 +49,7 @@ const App = () => {
       </HeaderMobile>
       <MobilePanels>
         {imgTabs.map((tab, index) => (
-          <Tab key={index} onClick={() => setActiveTabs(index + 1)} className={activeTabs === index + 1 ? 'active' : ''}>
+          <Tab key={index} onClick={() => setActiveTabs(index)} className={activeTabs === index ? 'active' : ''}>
             <img alt="tab" src={tab}/>
           </Tab>
         ))}

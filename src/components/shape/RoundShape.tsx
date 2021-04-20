@@ -70,7 +70,7 @@ function RoundShape({ active }: PropsTab) {
   return (
     <Shape
       style={
-        active === 0 || active === 3
+        active === 4 || active === 2
           ? { display: "block" }
           : { display: "none" }
       }

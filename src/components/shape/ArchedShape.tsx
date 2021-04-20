@@ -55,10 +55,6 @@ function ArchedShape({ active }: PropsTab) {
     autoFocusWidth: false,
   });
 
-  if (calculation.heightSmall > calculation.heightBig) {
-    calculation.heightBig = calculation.heightSmall;
-  }
-
   const onValueSmallHeight = (e: any) => {
     setCalculation({ ...calculation, heightSmall: Math.abs(e.target.value) });
   };
@@ -183,6 +179,9 @@ function ArchedShape({ active }: PropsTab) {
   const onKeyDownBigHeight = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
+      if (calculation.heightSmall > calculation.heightBig) {
+        calculation.heightBig = calculation.heightSmall;
+      }
       if (!calculation.heightSmall) {
         document.getElementById("arched_height_small")?.focus();
         return;
@@ -197,6 +196,9 @@ function ArchedShape({ active }: PropsTab) {
   const onKeyDownSmallHeight = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
+      if (calculation.heightSmall > calculation.heightBig && calculation.heightBig) {
+        calculation.heightBig = calculation.heightSmall;
+      }
       if (!calculation.heightBig) {
         document.getElementById("arched_height_big")?.focus();
         return;
@@ -225,7 +227,7 @@ function ArchedShape({ active }: PropsTab) {
   return (
     <Shape
       style={
-        active === 0 || active === 1
+        active === 0 || active === 4
           ? { display: "block" }
           : { display: "none" }
       }

@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     min-height: 100vh;
     width: 100vw;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     overflow-x:hidden;
     font-family: 'Roboto', 'Segoe UI',sans-serif;
     -webkit-font-smoothing: antialiased;

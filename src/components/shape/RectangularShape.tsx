@@ -104,7 +104,7 @@ function RectangularShape({ active }: PropsTab) {
   return (
     <Shape
       style={
-        active === 0 || active === 2
+        active === 4 || active === 1
           ? { display: "block" }
           : { display: "none" }
       }

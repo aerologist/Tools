@@ -194,7 +194,7 @@ function TrapezoidalShape({ active }: PropsTab) {
   return (
     <Shape
       style={
-        active === 0 || active === 4
+        active === 4 || active === 3
           ? { display: "block" }
           : { display: "none" }
       }
