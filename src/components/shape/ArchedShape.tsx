@@ -28,15 +28,15 @@ function ArchedShape({ active }: PropsTab) {
   const [calculation, setCalculation] = React.useState<{
     square: string;
     perimeter: string;
-    heightSmall: number;
-    heightBig: number;
-    width: number;
+    heightSmall: string;
+    heightBig: string;
+    width: string;
   }>({
     square: "0",
     perimeter: "0",
-    heightSmall: 0,
-    heightBig: 0,
-    width: 0,
+    heightSmall: "",
+    heightBig: "",
+    width: "",
   });
 
   const [stateFocus, setStateFocus] = React.useState<{
@@ -56,26 +56,55 @@ function ArchedShape({ active }: PropsTab) {
   });
 
   const onValueSmallHeight = (e: any) => {
-    setCalculation({ ...calculation, heightSmall: Math.abs(e.target.value) });
+    setCalculation({
+      ...calculation,
+      heightSmall: e.target.value
+        .replace(/[^.,0-9]/g, "")
+        .replace(/^\./, "")
+        .replace(/^,/, "")
+        .replace(/[.]/, ",")
+        .replace(/^([^,]*,)|,/g, "$1"),
+    });
   };
 
   const onValueBigHeight = (e: any) => {
-    setCalculation({ ...calculation, heightBig: Math.abs(e.target.value) });
+    setCalculation({
+      ...calculation,
+      heightBig: e.target.value
+        .replace(/[^.,0-9]/g, "")
+        .replace(/^\./, "")
+        .replace(/^,/, "")
+        .replace(/[.]/, ",")
+        .replace(/^([^,]*,)|,/g, "$1"),
+    });
   };
 
   const onValueWidth = (e: any) => {
-    setCalculation({ ...calculation, width: Math.abs(e.target.value) });
+    setCalculation({
+      ...calculation,
+      width: e.target.value
+        .replace(/[^.,0-9]/g, "")
+        .replace(/^\./, "")
+        .replace(/^,/, "")
+        .replace(/[.]/, ",")
+        .replace(/^([^,]*,)|,/g, "$1"),
+    });
   };
 
-  if (!calculation.heightSmall || !calculation.width) {
+  if (
+    !calculation.heightSmall ||
+    !calculation.width ||
+    calculation.heightSmall === "0" ||
+    calculation.width === "0"
+  ) {
     calculation.perimeter = "0";
   } else {
     calculation.perimeter = (
       Math.ceil(
-        (+calculation.heightSmall +
-          +calculation.heightSmall +
-          +calculation.width +
-          (+calculation.width / 2) * 3.1415926535) *
+        (+calculation.heightSmall.replace(/,/g, ".") +
+          +calculation.heightSmall.replace(/,/g, ".") +
+          +calculation.width.replace(/,/g, ".") +
+          (+calculation.width.replace(/,/g, ".") / 2) * 3.1415926535) *
           10
       ) / 10
     )
@@ -86,33 +115,53 @@ function ArchedShape({ active }: PropsTab) {
   if (
     !calculation.heightSmall ||
     !calculation.width ||
-    !calculation.heightBig
+    !calculation.heightBig ||
+    calculation.heightSmall === "0" ||
+    calculation.width === "0" ||
+    calculation.heightBig === "0"
   ) {
     calculation.square = "0";
   } else {
-    if (Math.abs(calculation.heightBig - calculation.heightSmall) < 0.0000001) {
+    if (
+      Math.abs(
+        +calculation.heightBig.replace(/,/g, ".") -
+          +calculation.heightSmall.replace(/,/g, ".")
+      ) < 0.0000001
+    ) {
       calculation.square = (
-        Math.ceil(calculation.width * calculation.heightSmall * 10) / 10
+        Math.ceil(
+          +calculation.width.replace(/,/g, ".") *
+            +calculation.heightSmall.replace(/,/g, ".") *
+            10
+        ) / 10
       )
         .toString()
         .replace(".", ",");
     } else {
       if (
-        calculation.heightBig - calculation.heightSmall <
-        calculation.width / 2
+        +calculation.heightBig - +calculation.heightSmall <
+        +calculation.width / 2
       ) {
         const l = Math.sqrt(
-          (calculation.heightBig - calculation.heightSmall) *
-            (calculation.heightBig - calculation.heightSmall) +
-            (calculation.width / 2) * (calculation.width / 2)
+          (+calculation.heightBig.replace(/,/g, ".") -
+            +calculation.heightSmall.replace(/,/g, ".")) *
+            (+calculation.heightBig.replace(/,/g, ".") -
+              +calculation.heightSmall.replace(/,/g, ".")) +
+            (+calculation.width.replace(/,/g, ".") / 2) *
+              (+calculation.width.replace(/,/g, ".") / 2)
         );
 
         const r =
-          (l * l) / (2 * (calculation.heightBig - calculation.heightSmall));
+          (l * l) /
+          (2 *
+            (+calculation.heightBig.replace(/,/g, ".") -
+              +calculation.heightSmall.replace(/,/g, ".")));
 
-        const phi = Math.asin(calculation.width / 2 / r);
+        const phi = Math.asin(+calculation.width.replace(/,/g, ".") / 2 / r);
 
-        const s1 = calculation.width * calculation.heightSmall;
+        const s1 =
+          +calculation.width.replace(/,/g, ".") *
+          +calculation.heightSmall.replace(/,/g, ".");
 
         const s2 = Math.PI * r * r * (phi / Math.PI);
 
@@ -123,21 +172,30 @@ function ArchedShape({ active }: PropsTab) {
           .replace(".", ",");
       }
       if (
-        calculation.heightBig - calculation.heightSmall >
-        calculation.width / 2
+        +calculation.heightBig.replace(/,/g, ".") -
+          +calculation.heightSmall.replace(/,/g, ".") >
+        +calculation.width.replace(/,/g, ".") / 2
       ) {
         const l = Math.sqrt(
-          (calculation.heightBig - calculation.heightSmall) *
-            (calculation.heightBig - calculation.heightSmall) +
-            (calculation.width / 2) * (calculation.width / 2)
+          (+calculation.heightBig.replace(/,/g, ".") -
+            +calculation.heightSmall.replace(/,/g, ".")) *
+            (+calculation.heightBig.replace(/,/g, ".") -
+              +calculation.heightSmall.replace(/,/g, ".")) +
+            (+calculation.width.replace(/,/g, ".") / 2) *
+              (+calculation.width.replace(/,/g, ".") / 2)
         );
 
         const r =
-          (l * l) / (2 * (calculation.heightBig - calculation.heightSmall));
+          (l * l) /
+          (2 *
+            (+calculation.heightBig.replace(/,/g, ".") -
+              +calculation.heightSmall.replace(/,/g, ".")));
 
-        const phi = Math.asin(calculation.width / 2 / r);
+        const phi = Math.asin(+calculation.width.replace(/,/g, ".") / 2 / r);
 
-        const s1 = calculation.width * calculation.heightSmall;
+        const s1 =
+          +calculation.width.replace(/,/g, ".") *
+          +calculation.heightSmall.replace(/,/g, ".");
 
         const s2 = Math.PI * r * r * (1 - phi / Math.PI);
 
@@ -156,6 +214,9 @@ function ArchedShape({ active }: PropsTab) {
 
   function onBlurWidth() {
     setStateFocus({ ...stateFocus, focusInputWidth: false });
+    if (calculation.width === '0') {
+      calculation.width = ''
+    }
   }
 
   function onFocusSmallHeight() {
@@ -164,6 +225,15 @@ function ArchedShape({ active }: PropsTab) {
 
   function onBlurSmallHeight() {
     setStateFocus({ ...stateFocus, focusInputSmallHeight: false });
+    if (
+      calculation.heightSmall > calculation.heightBig &&
+      calculation.heightBig
+    ) {
+      calculation.heightBig = calculation.heightSmall;
+    }
+    if (calculation.heightSmall === '0') {
+      calculation.heightSmall = ''
+    }
   }
 
   function onFocusBigHeight() {
@@ -172,6 +242,15 @@ function ArchedShape({ active }: PropsTab) {
 
   function onBlurBigHeight() {
     setStateFocus({ ...stateFocus, focusInputBigHeight: false });
+    if (
+      calculation.heightSmall > calculation.heightBig &&
+      calculation.heightBig
+    ) {
+      calculation.heightBig = calculation.heightSmall;
+    }
+    if (calculation.heightBig === '0') {
+      calculation.heightBig = ''
+    }
   }
 
   const sortRef = React.useRef(null);
@@ -181,6 +260,9 @@ function ArchedShape({ active }: PropsTab) {
       e.target.blur();
       if (calculation.heightSmall > calculation.heightBig) {
         calculation.heightBig = calculation.heightSmall;
+      }
+      if (e.target.value === '0') {
+        calculation.heightBig = ''
       }
       if (!calculation.heightSmall) {
         document.getElementById("arched_height_small")?.focus();
@@ -196,7 +278,13 @@ function ArchedShape({ active }: PropsTab) {
   const onKeyDownSmallHeight = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
-      if (calculation.heightSmall > calculation.heightBig && calculation.heightBig) {
+      if (e.target.value === '0') {
+        calculation.heightSmall = ''
+      }
+      if (
+        calculation.heightSmall > calculation.heightBig &&
+        calculation.heightBig
+      ) {
         calculation.heightBig = calculation.heightSmall;
       }
       if (!calculation.heightBig) {
@@ -213,6 +301,9 @@ function ArchedShape({ active }: PropsTab) {
   const onKeyDownWidth = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
+      if (e.target.value === '0') {
+        calculation.width = ''
+      }
       if (!calculation.heightBig) {
         document.getElementById("arched_height_big")?.focus();
         return;
@@ -242,13 +333,14 @@ function ArchedShape({ active }: PropsTab) {
               id="arched_height_big"
               label={t("height")}
               onKeyUp={onKeyDownBigHeight}
-              value={calculation.heightBig === 0 ? "" : calculation.heightBig}
+              value={calculation.heightBig}
               onChange={onValueBigHeight}
-              type="number"
+              type="text"
               variant="outlined"
               style={{ width: 112, marginTop: -5, color: "black" }}
               onFocus={onFocusBigHeight}
               onBlur={onBlurBigHeight}
+              inputProps={{ inputMode: "numeric" }}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -268,13 +360,14 @@ function ArchedShape({ active }: PropsTab) {
             ref={sortRef}
             label={t("height")}
             variant="outlined"
-            value={calculation.heightSmall === 0 ? "" : calculation.heightSmall}
-            type="number"
+            value={calculation.heightSmall}
+            type="text"
             onChange={onValueSmallHeight}
             onKeyUp={onKeyDownSmallHeight}
             style={{ width: 112, top: 98, marginLeft: 16 }}
             onFocus={onFocusSmallHeight}
             onBlur={onBlurSmallHeight}
+            inputProps={{ inputMode: "numeric" }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -297,13 +390,14 @@ function ArchedShape({ active }: PropsTab) {
           id="arched_width"
           label={t("width")}
           variant="outlined"
-          value={calculation.width === 0 ? "" : calculation.width}
-          type="number"
+          value={calculation.width}
+          type="text"
           onChange={onValueWidth}
           style={{ width: 112, top: 24, marginLeft: 28 }}
           onFocus={onFocusWidth}
           onKeyUp={onKeyDownWidth}
           onBlur={onBlurWidth}
+          inputProps={{ inputMode: "numeric" }}
           className="input"
           InputProps={{
             endAdornment: (

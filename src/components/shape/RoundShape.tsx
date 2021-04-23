@@ -16,11 +16,11 @@ function RoundShape({ active }: PropsTab) {
   const [calculation, setCalculation] = React.useState<{
     square: string;
     perimeter: string;
-    diameter: number;
+    diameter: string;
   }>({
     square: "0",
     perimeter: "0",
-    diameter: 0,
+    diameter: "",
   });
 
   const [stateFocus, setStateFocus] = React.useState<{
@@ -32,14 +32,19 @@ function RoundShape({ active }: PropsTab) {
   const onValueDiameter = (e: any) => {
     setCalculation({
       ...calculation,
-      diameter: Math.abs(e.target.value.replace(/,/g, "")),
+      diameter: e.target.value
+        .replace(/[^.,0-9]/g, "")
+        .replace(/^\./, "")
+        .replace(/^,/, "")
+        .replace(/[.]/, ',')
+        .replace( /^([^,]*,)|,/g, '$1' ),
     });
   };
 
   calculation.square = (
     Math.ceil(
-      (calculation.diameter / 2) *
-        (calculation.diameter / 2) *
+      (+calculation.diameter.replace(/,/g, ".") / 2) *
+        (+calculation.diameter.replace(/,/g, ".") / 2) *
         3.1415926535 *
         10
     ) / 10
@@ -48,7 +53,9 @@ function RoundShape({ active }: PropsTab) {
     .replace(".", ",");
 
   calculation.perimeter = (
-    Math.ceil(((2 * 3.1415926535 * calculation.diameter) / 2) * 10) / 10
+    Math.ceil(
+      ((2 * 3.1415926535 * +calculation.diameter.replace(/,/g, ".")) / 2) * 10
+    ) / 10
   )
     .toString()
     .replace(".", ",");
@@ -59,11 +66,17 @@ function RoundShape({ active }: PropsTab) {
 
   function onBlurDiameter() {
     setStateFocus({ ...stateFocus, focusInputDiameter: false });
+    if (calculation.diameter === '0') {
+      calculation.diameter = ''
+    }
   }
 
   const onKeyDownDiameter = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
+      if (e.target.value === '0') {
+        calculation.diameter = ''
+      }
     }
   };
 
@@ -84,13 +97,14 @@ function RoundShape({ active }: PropsTab) {
             <TextField
               onKeyUp={onKeyDownDiameter}
               label={t("diameter")}
-              value={calculation.diameter === 0 ? "" : calculation.diameter}
+              value={calculation.diameter}
               onChange={onValueDiameter}
-              type="number"
+              type="text"
               variant="outlined"
               style={{ width: 112, marginBottom: 6 }}
               onFocus={onFocusDiameter}
               onBlur={onBlurDiameter}
+              inputProps={{ inputMode: "numeric" }}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">

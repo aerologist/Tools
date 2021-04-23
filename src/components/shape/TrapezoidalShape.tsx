@@ -29,20 +29,16 @@ function TrapezoidalShape({ active }: PropsTab) {
   const [calculation, setCalculation] = React.useState<{
     square: string;
     perimeter: string;
-    mediana: number;
-    height: number;
-    width: number;
+    mediana: string;
+    height: string;
+    width: string;
   }>({
     square: "0",
     perimeter: "0",
-    mediana: 0,
-    height: 0,
-    width: 0,
+    mediana: "",
+    height: "",
+    width: "",
   });
-
-  if (calculation.width) {
-    calculation.mediana = Math.min(calculation.mediana, calculation.width);
-  }
 
   const [stateFocus, setStateFocus] = React.useState<{
     focusInputHeight: boolean;
@@ -55,56 +51,80 @@ function TrapezoidalShape({ active }: PropsTab) {
   });
 
   const onValueMediana = (e: any) => {
-    setCalculation({ ...calculation, mediana: Math.abs(e.target.value) });
+    setCalculation({
+      ...calculation,
+      mediana: e.target.value
+        .replace(/[^.,0-9]/g, "")
+        .replace(/^\./, "")
+        .replace(/^,/, "")
+        .replace(/[.]/, ",")
+        .replace(/^([^,]*,)|,/g, "$1"),
+    });
   };
 
   const onValueHeight = (e: any) => {
-    setCalculation({ ...calculation, height: Math.abs(e.target.value) });
+    setCalculation({
+      ...calculation,
+      height: e.target.value
+        .replace(/[^.,0-9]/g, "")
+        .replace(/^\./, "")
+        .replace(/^,/, "")
+        .replace(/[.]/, ",")
+        .replace(/^([^,]*,)|,/g, "$1"),
+    });
   };
 
   const onValueWidth = (e: any) => {
-    setCalculation({ ...calculation, width: Math.abs(e.target.value) });
+    setCalculation({
+      ...calculation,
+      width: e.target.value
+        .replace(/[^.,0-9]/g, "")
+        .replace(/^\./, "")
+        .replace(/^,/, "")
+        .replace(/[.]/, ",")
+        .replace(/^([^,]*,)|,/g, "$1"),
+    });
   };
 
-  if (calculation.mediana && calculation.height && !calculation.width) {
+  if (+(calculation.mediana.replace(/,/g, ".")) > 0 && +(calculation.height.replace(/,/g, ".")) > 0 && +(calculation.width.replace(/,/g, ".")) === 0) {
     calculation.square = (
-      Math.ceil(calculation.mediana * calculation.height * 10) / 10
+      Math.ceil(+calculation.mediana.replace(/,/g, ".") * +calculation.height.replace(/,/g, ".") * 10) / 10
     )
       .toString()
       .replace(".", ",");
     calculation.perimeter = (
       Math.ceil(
-        (2 * calculation.mediana + (2 * calculation.height) / 0.992546152) * 10
+        (2 * +calculation.mediana.replace(/,/g, ".") + (2 * +calculation.height.replace(/,/g, ".")) / 0.992546152) * 10
       ) / 10
     )
       .toString()
       .replace(".", ",");
-  } else if (calculation.mediana && calculation.height && calculation.width) {
+  } else if (+(calculation.mediana.replace(/,/g, ".")) > 0 && +(calculation.height.replace(/,/g, ".")) > 0 && +(calculation.width.replace(/,/g, ".")) > 0) {
     calculation.square = (
-      Math.ceil(calculation.mediana * calculation.height * 10) / 10
+      Math.ceil(+calculation.mediana.replace(/,/g, ".") * +calculation.height.replace(/,/g, ".") * 10) / 10
     )
       .toString()
       .replace(".", ",");
     calculation.perimeter = (
       Math.ceil(
-        (+calculation.width +
-          (2 * (calculation.mediana - calculation.width / 2) +
+        (+calculation.width.replace(/,/g, ".") +
+          (2 * (+calculation.mediana.replace(/,/g, ".") - +calculation.width.replace(/,/g, ".") / 2) +
             2 *
               Math.sqrt(
-                Math.pow(calculation.height, 2) +
-                  Math.pow(calculation.width - calculation.mediana, 2)
+                Math.pow(+calculation.height.replace(/,/g, "."), 2) +
+                  Math.pow(+calculation.width.replace(/,/g, ".") - +calculation.mediana.replace(/,/g, "."), 2)
               ))) *
           10
       ) / 10
     )
       .toString()
       .replace(".", ",");
-  } else if (!calculation.mediana && calculation.height && calculation.width) {
+  } else if (+(calculation.mediana.replace(/,/g, ".")) === 0 && +(calculation.height.replace(/,/g, ".")) > 0 && +(calculation.width.replace(/,/g, ".")) > 0) {
     calculation.square = (
       Math.ceil(
-        calculation.height *
-          (calculation.width -
-            (calculation.height / 0.992546152) * 0.121869343) *
+        +calculation.height.replace(/,/g, ".") *
+          (+calculation.width.replace(/,/g, ".") -
+            (+calculation.height.replace(/,/g, ".") / 0.992546152) * 0.121869343) *
           10
       ) / 10
     )
@@ -112,9 +132,9 @@ function TrapezoidalShape({ active }: PropsTab) {
       .replace(".", ",");
     calculation.perimeter = (
       Math.ceil(
-        (+calculation.width +
-          (calculation.height / 0.992546152) * 2 +
-          (calculation.width - 2 * calculation.height * 0.12278456)) *
+        (+calculation.width.replace(/,/g, ".") +
+          (+calculation.height.replace(/,/g, ".") / 0.992546152) * 2 +
+          (+calculation.width.replace(/,/g, ".") - 2 * +calculation.height.replace(/,/g, ".") * 0.12278456)) *
           10
       ) / 10
     )
@@ -131,6 +151,9 @@ function TrapezoidalShape({ active }: PropsTab) {
 
   function onBlurHeight() {
     setStateFocus({ ...stateFocus, focusInputHeight: false });
+    if (calculation.height === '0') {
+      calculation.height = ''
+    }
   }
 
   function onFocusMediana() {
@@ -139,6 +162,18 @@ function TrapezoidalShape({ active }: PropsTab) {
 
   function onBlurMediana() {
     setStateFocus({ ...stateFocus, focusInputMediana: false });
+    if (calculation.mediana === '0') {
+      calculation.mediana = ''
+    }
+    if (calculation.width && calculation.width !== '0') {
+      calculation.mediana = Math.min(
+        +calculation.mediana.replace(/,/g, "."),
+        +calculation.width.replace(/,/g, ".")
+      ).toString().replace(/[.]/g, ",");
+      if (calculation.mediana === '0') {
+        calculation.mediana = ''
+      }
+    }
   }
 
   function onFocusWidth() {
@@ -147,11 +182,26 @@ function TrapezoidalShape({ active }: PropsTab) {
 
   function onBlurWidth() {
     setStateFocus({ ...stateFocus, focusInputWidth: false });
+    if (calculation.width === '0') {
+      calculation.width = ''
+    }
+    if (calculation.width && calculation.width !== '0') {
+      calculation.mediana = Math.min(
+        +calculation.mediana.replace(/,/g, "."),
+        +calculation.width.replace(/,/g, ".")
+      ).toString().replace(/[.]/g, ",");
+      if (calculation.mediana === '0') {
+        calculation.mediana = ''
+      }
+    }
   }
 
   const onKeyDownMediana = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
+      if (e.target.value === '0') {
+        calculation.mediana = ''
+      }
       if (!calculation.height) {
         document.getElementById("trapezoidal_height")?.focus();
         return;
@@ -160,12 +210,24 @@ function TrapezoidalShape({ active }: PropsTab) {
         document.getElementById("trapezoidal_width")?.focus();
         return;
       }
+      if (calculation.width && calculation.width !== '0') {
+        calculation.mediana = Math.min(
+          +calculation.mediana.replace(/,/g, "."),
+          +calculation.width.replace(/,/g, ".")
+        ).toString().replace(/[.]/g, ",");
+        if (calculation.mediana === '0') {
+          calculation.mediana = ''
+        }
+      }
     }
   };
 
   const onKeyDownHeight = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
+      if (e.target.value === '0') {
+        calculation.height = ''
+      }
       if (!calculation.mediana) {
         document.getElementById("trapezoidal_mediana")?.focus();
         return;
@@ -180,6 +242,9 @@ function TrapezoidalShape({ active }: PropsTab) {
   const onKeyDownWidth = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
+      if (e.target.value === '0') {
+        calculation.width = ''
+      }
       if (!calculation.mediana) {
         document.getElementById("trapezoidal_mediana")?.focus();
         return;
@@ -187,6 +252,15 @@ function TrapezoidalShape({ active }: PropsTab) {
       if (!calculation.height) {
         document.getElementById("trapezoidal_height")?.focus();
         return;
+      }
+      if (calculation.width && calculation.width !== '0') {
+        calculation.mediana = Math.min(
+          +calculation.mediana.replace(/,/g, "."),
+          +calculation.width.replace(/,/g, ".")
+        ).toString().replace(/[.]/g, ",");
+        if (calculation.mediana === '0') {
+          calculation.mediana = ''
+        }
       }
     }
   };
@@ -213,14 +287,15 @@ function TrapezoidalShape({ active }: PropsTab) {
               <TextField
                 id="trapezoidal_mediana"
                 label={t("width")}
-                value={calculation.mediana === 0 ? "" : calculation.mediana}
+                value={calculation.mediana}
                 onChange={onValueMediana}
                 onKeyUp={onKeyDownMediana}
-                type="number"
+                type="text"
                 variant="outlined"
                 style={{ width: 112, marginTop: 160, zIndex: 11 }}
                 onFocus={onFocusMediana}
                 onBlur={onBlurMediana}
+                inputProps={{ inputMode: "numeric" }}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -244,14 +319,15 @@ function TrapezoidalShape({ active }: PropsTab) {
           <TextField
             id="trapezoidal_height"
             label={t("height")}
-            value={calculation.height === 0 ? "" : calculation.height}
+            value={calculation.height}
             onChange={onValueHeight}
             onKeyUp={onKeyDownHeight}
-            type="number"
+            type="text"
             variant="outlined"
             style={{ width: 112, top: 54, marginLeft: 16 }}
             onFocus={onFocusHeight}
             onBlur={onBlurHeight}
+            inputProps={{ inputMode: "numeric" }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
@@ -274,13 +350,14 @@ function TrapezoidalShape({ active }: PropsTab) {
           id="trapezoidal_width"
           label={t("width")}
           variant="outlined"
-          type="number"
-          value={calculation.width === 0 ? "" : calculation.width}
+          type="text"
+          value={calculation.width}
           onChange={onValueWidth}
           onKeyUp={onKeyDownWidth}
           style={{ width: 112, top: 24, marginLeft: 31 }}
           onFocus={onFocusWidth}
           onBlur={onBlurWidth}
+          inputProps={{ inputMode: "numeric" }}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">

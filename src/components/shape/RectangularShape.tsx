@@ -26,13 +26,13 @@ function RectangularShape({ active }: PropsTab) {
   const [calculation, setCalculation] = React.useState<{
     square: string;
     perimeter: string;
-    bigHeight: number;
-    width: number;
+    bigHeight: string;
+    width: string;
   }>({
     square: "0",
     perimeter: "0",
-    bigHeight: 0,
-    width: 0,
+    bigHeight: "",
+    width: "",
   });
 
   const [stateFocus, setStateFocus] = React.useState<{
@@ -44,24 +44,48 @@ function RectangularShape({ active }: PropsTab) {
   });
 
   const onValueBigHeight = (e: any) => {
-    setCalculation({ ...calculation, bigHeight: Math.abs(e.target.value) });
+    setCalculation({
+      ...calculation,
+      bigHeight: e.target.value
+        .replace(/[^.,0-9]/g, "")
+        .replace(/^\./, "")
+        .replace(/^,/, "")
+        .replace(/[.]/, ",")
+        .replace(/^([^,]*,)|,/g, "$1"),
+    });
   };
 
   const onValueWidth = (e: any) => {
-    setCalculation({ ...calculation, width: Math.abs(e.target.value) });
+    setCalculation({
+      ...calculation,
+      width: e.target.value
+        .replace(/[^.,0-9]/g, "")
+        .replace(/^\./, "")
+        .replace(/^,/, "")
+        .replace(/[.]/, ",")
+        .replace(/^([^,]*,)|,/g, "$1"),
+    });
   };
 
-  if (!calculation.bigHeight || !calculation.width) {
+  if (!calculation.bigHeight || !calculation.width || calculation.bigHeight === '0' || calculation.width === '0') {
     calculation.square = "0";
     calculation.perimeter = "0";
   } else {
     calculation.square = (
-      Math.ceil(calculation.bigHeight * calculation.width * 10) / 10
+      Math.ceil(
+        +calculation.bigHeight.replace(/,/g, ".") *
+          +calculation.width.replace(/,/g, ".") *
+          10
+      ) / 10
     )
       .toString()
       .replace(".", ",");
     calculation.perimeter = (
-      Math.ceil((calculation.bigHeight * 2 + calculation.width * 2) * 10) / 10
+      Math.ceil(
+        (+calculation.bigHeight.replace(/,/g, ".") * 2 +
+          +calculation.width.replace(/,/g, ".") * 2) *
+          10
+      ) / 10
     )
       .toString()
       .replace(".", ",");
@@ -73,6 +97,9 @@ function RectangularShape({ active }: PropsTab) {
 
   function onBlurWidth() {
     setStateFocus({ ...stateFocus, focusInputWidth: false });
+    if (calculation.width === '0') {
+      calculation.width = ''
+    }
   }
 
   function onFocusHeight() {
@@ -81,11 +108,17 @@ function RectangularShape({ active }: PropsTab) {
 
   function onBlurHeight() {
     setStateFocus({ ...stateFocus, focusInputHeight: false });
+    if (calculation.bigHeight === '0') {
+      calculation.bigHeight = ''
+    }
   }
 
   const onKeyDownWidth = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
+      if (e.target.value === '0') {
+        calculation.width = ''
+      }
       if (!calculation.bigHeight) {
         document.getElementById("rectangular_height")?.focus();
       }
@@ -95,6 +128,9 @@ function RectangularShape({ active }: PropsTab) {
   const onKeyDownHeight = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
+      if (e.target.value === '0') {
+        calculation.bigHeight = ''
+      }
       if (!calculation.width) {
         document.getElementById("rectangular_width")?.focus();
       }
@@ -123,13 +159,14 @@ function RectangularShape({ active }: PropsTab) {
               id="rectangular_width"
               label={t("width")}
               variant="outlined"
-              type="number"
-              value={calculation.width === 0 ? "" : calculation.width}
+              type="text"
+              value={calculation.width}
               onChange={onValueWidth}
               style={{ width: 112, marginLeft: 1 }}
               onKeyUp={onKeyDownWidth}
               onFocus={onFocusWidth}
               onBlur={onBlurWidth}
+              inputProps={{ inputMode: "numeric" }}
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
@@ -147,14 +184,15 @@ function RectangularShape({ active }: PropsTab) {
           <TextField
             id="rectangular_height"
             label={t("height")}
-            value={calculation.bigHeight === 0 ? "" : calculation.bigHeight}
+            value={calculation.bigHeight}
             onChange={onValueBigHeight}
             onKeyUp={onKeyDownHeight}
-            type="number"
+            type="text"
             variant="outlined"
             style={{ width: 112, top: 54, marginLeft: 16 }}
             onFocus={onFocusHeight}
             onBlur={onBlurHeight}
+            inputProps={{ inputMode: "numeric" }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">

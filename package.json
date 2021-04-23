@@ -20,6 +20,7 @@
     "react-dom": "^17.0.2",
     "react-i18next": "^11.8.10",
     "react-scripts": "4.0.3",
+    "react-swipeable-views": "^0.13.9",
     "register-service-worker": "^1.7.2",
     "styled-components": "^5.2.1",
     "styled-normalize": "^8.0.7",
@@ -61,5 +62,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/react-swipe": "^6.0.0"
   }
 }
