@@ -18,11 +18,7 @@ import {
 } from "./styles";
 import { ThemeProvider } from "@material-ui/core/styles";
 
-interface PropsTab {
-  active: number;
-}
-
-function ArchedShape({ active }: PropsTab) {
+function ArchedShape() {
   const { t } = useTranslation();
 
   const [calculation, setCalculation] = React.useState<{
@@ -316,13 +312,7 @@ function ArchedShape({ active }: PropsTab) {
   };
 
   return (
-    <Shape
-      style={
-        active === 0 || active === 4
-          ? { display: "block" }
-          : { display: "none" }
-      }
-    >
+    <Shape>
       <h2>{t("arched_shape")}</h2>
       <Line />
       <Figure>

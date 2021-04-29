@@ -6,11 +6,7 @@ import BigVerticalArrow from "../../assets/icons/BigVerticalArrow.svg";
 import { Shape, Line, Figure, FirstArrow, Form, Result, theme } from "./styles";
 import { ThemeProvider } from "@material-ui/core/styles";
 
-interface PropsTab {
-  active: number;
-}
-
-function RoundShape({ active }: PropsTab) {
+function RoundShape() {
   const { t } = useTranslation();
 
   const [calculation, setCalculation] = React.useState<{
@@ -81,13 +77,7 @@ function RoundShape({ active }: PropsTab) {
   };
 
   return (
-    <Shape
-      style={
-        active === 4 || active === 2
-          ? { display: "block" }
-          : { display: "none" }
-      }
-    >
+    <Shape>
       <h2>{t("round_shape")}</h2>
       <Line />
       <Figure>

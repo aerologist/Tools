@@ -16,11 +16,7 @@ import {
 } from "./styles";
 import { ThemeProvider } from "@material-ui/core/styles";
 
-interface PropsTab {
-  active: number;
-}
-
-function RectangularShape({ active }: PropsTab) {
+function RectangularShape() {
   const { t } = useTranslation();
 
   const [calculation, setCalculation] = React.useState<{
@@ -138,13 +134,7 @@ function RectangularShape({ active }: PropsTab) {
   };
 
   return (
-    <Shape
-      style={
-        active === 4 || active === 1
-          ? { display: "block" }
-          : { display: "none" }
-      }
-    >
+    <Shape>
       <h2>{t("rectangular_shape")}</h2>
       <Line />
       <Figure>

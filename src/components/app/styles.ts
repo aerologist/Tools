@@ -66,7 +66,6 @@ export const MobilePanels = styled.div`
     margin: -1px 0 0 0;
     height: 48px;
     margin-bottom: 2px;
-    box-shadow: 0 2px 0px rgba(0, 0, 0, .2);
   }
 `;
 
@@ -77,7 +76,23 @@ export const Tab = styled.div`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  &.active {
-    border-bottom: 3px solid white;
-  }
 `;
+
+export const LineTabs = styled.div`
+  display: none;
+  margin-top: -3px;
+  @media (max-width: 767px) {
+    display: flex;
+    width: 100%;
+    background: #3A3A3A;
+  }
+`
+
+export const LineTab = styled.div`
+  height: 3px;
+  width: 100%;
+  background: #3A3A3A;
+  &.active {
+    background: white;
+  }
+`

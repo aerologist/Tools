@@ -19,11 +19,7 @@ import {
 } from "./styles";
 import { ThemeProvider } from "@material-ui/core/styles";
 
-interface PropsTab {
-  active: number;
-}
-
-function TrapezoidalShape({ active }: PropsTab) {
+function TrapezoidalShape() {
   const { t } = useTranslation();
 
   const [calculation, setCalculation] = React.useState<{
@@ -266,13 +262,7 @@ function TrapezoidalShape({ active }: PropsTab) {
   };
 
   return (
-    <Shape
-      style={
-        active === 4 || active === 3
-          ? { display: "block" }
-          : { display: "none" }
-      }
-    >
+    <Shape>
       <h2>{t("trapecoidal_shape")}</h2>
       <Line />
       <Figure>

@@ -67,6 +67,10 @@ export const Form = styled.div<{ radius?: string }>`
     border: 3px solid black;
     border-radius: ${props => props.radius};
     margin: auto 0;
+    @media (max-width: 777px) {
+        height: 162px;
+        width: 162px;
+    }
 `;
 
 export const FormTrapezoidalBig = styled.div`
@@ -77,6 +81,10 @@ export const FormTrapezoidalBig = styled.div`
     border-right: 27px solid transparent;
     height: 0;
     width: 172px;
+    @media (max-width: 777px) {
+        border-bottom: 165.5px solid black;
+        width: 116px;
+    }
 `;
 
 export const FormTrapezoidalSmall = styled.div`
