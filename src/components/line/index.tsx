@@ -10,7 +10,7 @@ function Line({activeTabs}: PropsLine) {
   return (
     <LineTabs>
       {line.map((_, index) => (
-        <LineTab className={activeTabs === index ? "active" : ""} />
+        <LineTab className={activeTabs === index ? "active" : ""} key={index}/>
       ))}
     </LineTabs>
   );

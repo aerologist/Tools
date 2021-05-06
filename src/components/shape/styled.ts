@@ -47,10 +47,8 @@ export const FirstArrow = styled.img`
     position: absolute;
 `;
 
-export const SecondArrow = styled.img<{ top?: string }>`
+export const SecondArrow = styled.img`
     position: absolute;
-    top: ${props => props.top};
-    left: 180px;
 `;
 
 export const ThirdArrow = styled.img`
@@ -62,18 +60,13 @@ export const Form = styled.div<{ radius?: string }>`
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 168px;
-    width: 168px;
     border: 3px solid black;
     border-radius: ${props => props.radius};
     margin: auto 0;
-    @media (max-width: 777px) {
-        height: 162px;
-        width: 162px;
-    }
 `;
 
 export const FormTrapezoidalBig = styled.div`
+    position: relative;
     display: flex;
     justify-content: center;
     border-bottom: 165.5px solid black;
@@ -81,13 +74,15 @@ export const FormTrapezoidalBig = styled.div`
     border-right: 27px solid transparent;
     height: 0;
     width: 172px;
-    @media (max-width: 777px) {
-        border-bottom: 165.5px solid black;
-        width: 116px;
-    }
+    // @media (max-width: 777px) {
+    //     border-bottom: 165.5px solid black;
+    //     width: 116px;
+    // }
+
 `;
 
 export const FormTrapezoidalSmall = styled.div`
+    position: absolute;
     display: flex;
     margin: 2.5px;
     align-items: center;
@@ -96,7 +91,7 @@ export const FormTrapezoidalSmall = styled.div`
     border-left: 26px solid transparent;
     border-right: 26px solid transparent;
     height: 0;
-    width: 167.5px;
+    // width: 167.5px;
 `;
 
 export const Result = styled.div`

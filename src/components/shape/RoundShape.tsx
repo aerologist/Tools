@@ -3,7 +3,7 @@ import { useTranslation } from "react-i18next";
 import TextField from "@material-ui/core/TextField";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import BigVerticalArrow from "../../assets/icons/BigVerticalArrow.svg";
-import { Shape, Line, Figure, FirstArrow, Form, Result, theme } from "./styles";
+import { Shape, Line, Figure, FirstArrow, Form, Result, theme } from "./styled";
 import { ThemeProvider } from "@material-ui/core/styles";
 
 function RoundShape() {
@@ -32,8 +32,8 @@ function RoundShape() {
         .replace(/[^.,0-9]/g, "")
         .replace(/^\./, "")
         .replace(/^,/, "")
-        .replace(/[.]/, ',')
-        .replace( /^([^,]*,)|,/g, '$1' ),
+        .replace(/[.]/, ",")
+        .replace(/^([^,]*,)|,/g, "$1"),
     });
   };
 
@@ -62,16 +62,16 @@ function RoundShape() {
 
   function onBlurDiameter() {
     setStateFocus({ ...stateFocus, focusInputDiameter: false });
-    if (calculation.diameter === '0') {
-      calculation.diameter = ''
+    if (calculation.diameter === "0") {
+      calculation.diameter = "";
     }
   }
 
   const onKeyDownDiameter = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
-      if (e.target.value === '0') {
-        calculation.diameter = ''
+      if (e.target.value === "0") {
+        calculation.diameter = "";
       }
     }
   };
@@ -81,8 +81,19 @@ function RoundShape() {
       <h2>{t("round_shape")}</h2>
       <Line />
       <Figure>
-        <Form radius="84px">
-          <FirstArrow src={BigVerticalArrow} alt="arrow" />
+        <Form
+          radius="25.5vw"
+          style={
+            document.documentElement.clientWidth < 767
+              ? { height: "51vw", width: "51vw" }
+              : { height: "168px", width: "168px" }
+          }
+        >
+          <FirstArrow
+            src={BigVerticalArrow}
+            alt="arrow"
+            style={{ height: "calc(100% - 4px)" }}
+          />
           <ThemeProvider theme={theme}>
             <TextField
               onKeyUp={onKeyDownDiameter}

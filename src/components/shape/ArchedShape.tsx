@@ -15,7 +15,7 @@ import {
   Form,
   Result,
   theme,
-} from "./styles";
+} from "./styled";
 import { ThemeProvider } from "@material-ui/core/styles";
 
 function ArchedShape() {
@@ -210,8 +210,8 @@ function ArchedShape() {
 
   function onBlurWidth() {
     setStateFocus({ ...stateFocus, focusInputWidth: false });
-    if (calculation.width === '0') {
-      calculation.width = ''
+    if (calculation.width === "0") {
+      calculation.width = "";
     }
   }
 
@@ -227,8 +227,8 @@ function ArchedShape() {
     ) {
       calculation.heightBig = calculation.heightSmall;
     }
-    if (calculation.heightSmall === '0') {
-      calculation.heightSmall = ''
+    if (calculation.heightSmall === "0") {
+      calculation.heightSmall = "";
     }
   }
 
@@ -244,8 +244,8 @@ function ArchedShape() {
     ) {
       calculation.heightBig = calculation.heightSmall;
     }
-    if (calculation.heightBig === '0') {
-      calculation.heightBig = ''
+    if (calculation.heightBig === "0") {
+      calculation.heightBig = "";
     }
   }
 
@@ -257,8 +257,8 @@ function ArchedShape() {
       if (calculation.heightSmall > calculation.heightBig) {
         calculation.heightBig = calculation.heightSmall;
       }
-      if (e.target.value === '0') {
-        calculation.heightBig = ''
+      if (e.target.value === "0") {
+        calculation.heightBig = "";
       }
       if (!calculation.heightSmall) {
         document.getElementById("arched_height_small")?.focus();
@@ -274,8 +274,8 @@ function ArchedShape() {
   const onKeyDownSmallHeight = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
-      if (e.target.value === '0') {
-        calculation.heightSmall = ''
+      if (e.target.value === "0") {
+        calculation.heightSmall = "";
       }
       if (
         calculation.heightSmall > calculation.heightBig &&
@@ -297,8 +297,8 @@ function ArchedShape() {
   const onKeyDownWidth = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
-      if (e.target.value === '0') {
-        calculation.width = ''
+      if (e.target.value === "0") {
+        calculation.width = "";
       }
       if (!calculation.heightBig) {
         document.getElementById("arched_height_big")?.focus();
@@ -316,8 +316,19 @@ function ArchedShape() {
       <h2>{t("arched_shape")}</h2>
       <Line />
       <Figure>
-        <Form radius="84px 84px 0 0">
-          <FirstArrow src={BigVerticalArrow} alt="arrow" />
+        <Form
+          radius="25.5vw 25.5vw 0 0"
+          style={
+            document.documentElement.clientWidth < 767
+              ? { height: "51vw", width: "51vw" }
+              : { height: "168px", width: "168px" }
+          }
+        >
+          <FirstArrow
+            src={BigVerticalArrow}
+            alt="arrow"
+            style={{ height: "calc(100% - 4px)" }}
+          />
           <ThemeProvider theme={theme}>
             <TextField
               id="arched_height_big"
@@ -343,7 +354,19 @@ function ArchedShape() {
             />
           </ThemeProvider>
         </Form>
-        <SecondArrow top="85px" src={SmallVerticalArrow} alt="arrow" />
+        <SecondArrow
+          src={SmallVerticalArrow}
+          alt="arrow"
+          style={
+            document.documentElement.clientWidth < 767
+              ? {
+                  height: "26vw",
+                  top: "calc(25.5vw)",
+                  left: "calc(16px + 51vw)",
+                }
+              : { top: "85px", left: "180px" }
+          }
+        />
         <ThemeProvider theme={theme}>
           <TextField
             id="arched_height_small"
@@ -354,7 +377,11 @@ function ArchedShape() {
             type="text"
             onChange={onValueSmallHeight}
             onKeyUp={onKeyDownSmallHeight}
-            style={{ width: 112, top: 98, marginLeft: 16 }}
+            style={
+              document.documentElement.clientWidth < 767
+                ? { width: 112, top: "calc(38.5vw - 28px)", marginLeft: 16 }
+                : { width: 112, top: 98, marginLeft: 16 }
+            }
             onFocus={onFocusSmallHeight}
             onBlur={onBlurSmallHeight}
             inputProps={{ inputMode: "numeric" }}
@@ -373,7 +400,11 @@ function ArchedShape() {
       <ThirdArrow
         src={BigHorizontalArrow}
         alt="arrow"
-        style={{ marginLeft: 2 }}
+        style={
+          document.documentElement.clientWidth < 767
+            ? { marginLeft: 3, width: "51vw" }
+            : { marginLeft: 2 }
+        }
       />
       <ThemeProvider theme={theme}>
         <TextField
@@ -383,7 +414,11 @@ function ArchedShape() {
           value={calculation.width}
           type="text"
           onChange={onValueWidth}
-          style={{ width: 112, top: 24, marginLeft: 28 }}
+          style={
+            document.documentElement.clientWidth < 767
+              ? { width: 112, top: 24, marginLeft: "calc(25.5vw - 53px)" }
+              : { width: 112, top: 24, marginLeft: 28 }
+          }
           onFocus={onFocusWidth}
           onKeyUp={onKeyDownWidth}
           onBlur={onBlurWidth}

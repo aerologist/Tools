@@ -16,7 +16,7 @@ import {
   FormTrapezoidalSmall,
   Result,
   theme,
-} from "./styles";
+} from "./styled";
 import { ThemeProvider } from "@material-ui/core/styles";
 
 function TrapezoidalShape() {
@@ -82,45 +82,74 @@ function TrapezoidalShape() {
     });
   };
 
-  if (+(calculation.mediana.replace(/,/g, ".")) > 0 && +(calculation.height.replace(/,/g, ".")) > 0 && +(calculation.width.replace(/,/g, ".")) === 0) {
+  if (
+    +calculation.mediana.replace(/,/g, ".") > 0 &&
+    +calculation.height.replace(/,/g, ".") > 0 &&
+    +calculation.width.replace(/,/g, ".") === 0
+  ) {
     calculation.square = (
-      Math.ceil(+calculation.mediana.replace(/,/g, ".") * +calculation.height.replace(/,/g, ".") * 10) / 10
+      Math.ceil(
+        +calculation.mediana.replace(/,/g, ".") *
+          +calculation.height.replace(/,/g, ".") *
+          10
+      ) / 10
     )
       .toString()
       .replace(".", ",");
     calculation.perimeter = (
       Math.ceil(
-        (2 * +calculation.mediana.replace(/,/g, ".") + (2 * +calculation.height.replace(/,/g, ".")) / 0.992546152) * 10
+        (2 * +calculation.mediana.replace(/,/g, ".") +
+          (2 * +calculation.height.replace(/,/g, ".")) / 0.992546152) *
+          10
       ) / 10
     )
       .toString()
       .replace(".", ",");
-  } else if (+(calculation.mediana.replace(/,/g, ".")) > 0 && +(calculation.height.replace(/,/g, ".")) > 0 && +(calculation.width.replace(/,/g, ".")) > 0) {
+  } else if (
+    +calculation.mediana.replace(/,/g, ".") > 0 &&
+    +calculation.height.replace(/,/g, ".") > 0 &&
+    +calculation.width.replace(/,/g, ".") > 0
+  ) {
     calculation.square = (
-      Math.ceil(+calculation.mediana.replace(/,/g, ".") * +calculation.height.replace(/,/g, ".") * 10) / 10
+      Math.ceil(
+        +calculation.mediana.replace(/,/g, ".") *
+          +calculation.height.replace(/,/g, ".") *
+          10
+      ) / 10
     )
       .toString()
       .replace(".", ",");
     calculation.perimeter = (
       Math.ceil(
         (+calculation.width.replace(/,/g, ".") +
-          (2 * (+calculation.mediana.replace(/,/g, ".") - +calculation.width.replace(/,/g, ".") / 2) +
+          (2 *
+            (+calculation.mediana.replace(/,/g, ".") -
+              +calculation.width.replace(/,/g, ".") / 2) +
             2 *
               Math.sqrt(
                 Math.pow(+calculation.height.replace(/,/g, "."), 2) +
-                  Math.pow(+calculation.width.replace(/,/g, ".") - +calculation.mediana.replace(/,/g, "."), 2)
+                  Math.pow(
+                    +calculation.width.replace(/,/g, ".") -
+                      +calculation.mediana.replace(/,/g, "."),
+                    2
+                  )
               ))) *
           10
       ) / 10
     )
       .toString()
       .replace(".", ",");
-  } else if (+(calculation.mediana.replace(/,/g, ".")) === 0 && +(calculation.height.replace(/,/g, ".")) > 0 && +(calculation.width.replace(/,/g, ".")) > 0) {
+  } else if (
+    +calculation.mediana.replace(/,/g, ".") === 0 &&
+    +calculation.height.replace(/,/g, ".") > 0 &&
+    +calculation.width.replace(/,/g, ".") > 0
+  ) {
     calculation.square = (
       Math.ceil(
         +calculation.height.replace(/,/g, ".") *
           (+calculation.width.replace(/,/g, ".") -
-            (+calculation.height.replace(/,/g, ".") / 0.992546152) * 0.121869343) *
+            (+calculation.height.replace(/,/g, ".") / 0.992546152) *
+              0.121869343) *
           10
       ) / 10
     )
@@ -130,7 +159,8 @@ function TrapezoidalShape() {
       Math.ceil(
         (+calculation.width.replace(/,/g, ".") +
           (+calculation.height.replace(/,/g, ".") / 0.992546152) * 2 +
-          (+calculation.width.replace(/,/g, ".") - 2 * +calculation.height.replace(/,/g, ".") * 0.12278456)) *
+          (+calculation.width.replace(/,/g, ".") -
+            2 * +calculation.height.replace(/,/g, ".") * 0.12278456)) *
           10
       ) / 10
     )
@@ -147,8 +177,8 @@ function TrapezoidalShape() {
 
   function onBlurHeight() {
     setStateFocus({ ...stateFocus, focusInputHeight: false });
-    if (calculation.height === '0') {
-      calculation.height = ''
+    if (calculation.height === "0") {
+      calculation.height = "";
     }
   }
 
@@ -158,16 +188,18 @@ function TrapezoidalShape() {
 
   function onBlurMediana() {
     setStateFocus({ ...stateFocus, focusInputMediana: false });
-    if (calculation.mediana === '0') {
-      calculation.mediana = ''
+    if (calculation.mediana === "0") {
+      calculation.mediana = "";
     }
-    if (calculation.width && calculation.width !== '0') {
+    if (calculation.width && calculation.width !== "0") {
       calculation.mediana = Math.min(
         +calculation.mediana.replace(/,/g, "."),
         +calculation.width.replace(/,/g, ".")
-      ).toString().replace(/[.]/g, ",");
-      if (calculation.mediana === '0') {
-        calculation.mediana = ''
+      )
+        .toString()
+        .replace(/[.]/g, ",");
+      if (calculation.mediana === "0") {
+        calculation.mediana = "";
       }
     }
   }
@@ -178,16 +210,18 @@ function TrapezoidalShape() {
 
   function onBlurWidth() {
     setStateFocus({ ...stateFocus, focusInputWidth: false });
-    if (calculation.width === '0') {
-      calculation.width = ''
+    if (calculation.width === "0") {
+      calculation.width = "";
     }
-    if (calculation.width && calculation.width !== '0') {
+    if (calculation.width && calculation.width !== "0") {
       calculation.mediana = Math.min(
         +calculation.mediana.replace(/,/g, "."),
         +calculation.width.replace(/,/g, ".")
-      ).toString().replace(/[.]/g, ",");
-      if (calculation.mediana === '0') {
-        calculation.mediana = ''
+      )
+        .toString()
+        .replace(/[.]/g, ",");
+      if (calculation.mediana === "0") {
+        calculation.mediana = "";
       }
     }
   }
@@ -195,8 +229,8 @@ function TrapezoidalShape() {
   const onKeyDownMediana = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
-      if (e.target.value === '0') {
-        calculation.mediana = ''
+      if (e.target.value === "0") {
+        calculation.mediana = "";
       }
       if (!calculation.height) {
         document.getElementById("trapezoidal_height")?.focus();
@@ -206,13 +240,15 @@ function TrapezoidalShape() {
         document.getElementById("trapezoidal_width")?.focus();
         return;
       }
-      if (calculation.width && calculation.width !== '0') {
+      if (calculation.width && calculation.width !== "0") {
         calculation.mediana = Math.min(
           +calculation.mediana.replace(/,/g, "."),
           +calculation.width.replace(/,/g, ".")
-        ).toString().replace(/[.]/g, ",");
-        if (calculation.mediana === '0') {
-          calculation.mediana = ''
+        )
+          .toString()
+          .replace(/[.]/g, ",");
+        if (calculation.mediana === "0") {
+          calculation.mediana = "";
         }
       }
     }
@@ -221,8 +257,8 @@ function TrapezoidalShape() {
   const onKeyDownHeight = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
-      if (e.target.value === '0') {
-        calculation.height = ''
+      if (e.target.value === "0") {
+        calculation.height = "";
       }
       if (!calculation.mediana) {
         document.getElementById("trapezoidal_mediana")?.focus();
@@ -238,8 +274,8 @@ function TrapezoidalShape() {
   const onKeyDownWidth = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
-      if (e.target.value === '0') {
-        calculation.width = ''
+      if (e.target.value === "0") {
+        calculation.width = "";
       }
       if (!calculation.mediana) {
         document.getElementById("trapezoidal_mediana")?.focus();
@@ -249,13 +285,15 @@ function TrapezoidalShape() {
         document.getElementById("trapezoidal_height")?.focus();
         return;
       }
-      if (calculation.width && calculation.width !== '0') {
+      if (calculation.width && calculation.width !== "0") {
         calculation.mediana = Math.min(
           +calculation.mediana.replace(/,/g, "."),
           +calculation.width.replace(/,/g, ".")
-        ).toString().replace(/[.]/g, ",");
-        if (calculation.mediana === '0') {
-          calculation.mediana = ''
+        )
+          .toString()
+          .replace(/[.]/g, ",");
+        if (calculation.mediana === "0") {
+          calculation.mediana = "";
         }
       }
     }
@@ -266,12 +304,40 @@ function TrapezoidalShape() {
       <h2>{t("trapecoidal_shape")}</h2>
       <Line />
       <Figure>
-        <FormTrapezoidalBig>
-          <FormTrapezoidalSmall>
+        <FormTrapezoidalBig
+          style={
+            document.documentElement.clientWidth < 767
+              ? { width: "35vw", borderBottom: "50vw solid black" }
+              : { width: "172px", borderBottom: "165.5px solid black" }
+          }
+        >
+          <FormTrapezoidalSmall
+            style={
+              document.documentElement.clientWidth < 767
+                ? {
+                    width: "calc(35vw - 5px)",
+                    borderBottom: "calc(50vw - 5px) solid white",
+                    left: "-26px",
+                  }
+                : {
+                    width: "163px",
+                    borderBottom: "160.5px solid white",
+                    left: "-26px",
+                  }
+            }
+          >
             <FirstArrow
               src={SmallHorizontalArrow}
               alt="arrow"
-              style={{ zIndex: 11, top: 80 }}
+              style={
+                document.documentElement.clientWidth < 767
+                  ? {
+                      zIndex: 11,
+                      marginTop: "50vw",
+                      width: "calc(35vw + 24px)",
+                    }
+                  : { zIndex: 11, top: 80 }
+              }
             />
             <ThemeProvider theme={theme}>
               <TextField
@@ -282,7 +348,11 @@ function TrapezoidalShape() {
                 onKeyUp={onKeyDownMediana}
                 type="text"
                 variant="outlined"
-                style={{ width: 112, marginTop: 160, zIndex: 11 }}
+                style={
+                  document.documentElement.clientWidth < 767
+                    ? { width: 112, marginTop: "50vw", zIndex: 11 }
+                    : { width: 112, marginTop: 160, zIndex: 11 }
+                }
                 onFocus={onFocusMediana}
                 onBlur={onBlurMediana}
                 inputProps={{ inputMode: "numeric" }}
@@ -300,10 +370,13 @@ function TrapezoidalShape() {
           </FormTrapezoidalSmall>
         </FormTrapezoidalBig>
         <SecondArrow
-          top="2px"
           src={BigVerticalArrow}
           alt="arrow"
-          style={{ marginLeft: 6 }}
+          style={
+            document.documentElement.clientWidth < 767
+              ? { left: "calc(34vw + 70px)", top: "2px", height: "49vw" }
+              : { marginLeft: 182, top: "2px" }
+          }
         />
         <ThemeProvider theme={theme}>
           <TextField
@@ -314,7 +387,11 @@ function TrapezoidalShape() {
             onKeyUp={onKeyDownHeight}
             type="text"
             variant="outlined"
-            style={{ width: 112, top: 54, marginLeft: 16 }}
+            style={
+              document.documentElement.clientWidth < 767
+                ? { width: 112, top: "calc(24vw - 28px)", marginLeft: 16 }
+                : { width: 112, top: 54, marginLeft: 16 }
+            }
             onFocus={onFocusHeight}
             onBlur={onBlurHeight}
             inputProps={{ inputMode: "numeric" }}
@@ -332,7 +409,11 @@ function TrapezoidalShape() {
       </Figure>
       <ThirdArrow
         src={BigHorizontalArrow}
-        style={{ marginBottom: 20, marginLeft: 5 }}
+        style={
+          document.documentElement.clientWidth < 767
+            ? { marginBottom: 20, marginLeft: 2, width: "calc(34vw + 52px)" }
+            : { marginBottom: 20, marginLeft: 5 }
+        }
         alt="arrow"
       />
       <ThemeProvider theme={theme}>
@@ -344,7 +425,11 @@ function TrapezoidalShape() {
           value={calculation.width}
           onChange={onValueWidth}
           onKeyUp={onKeyDownWidth}
-          style={{ width: 112, top: 24, marginLeft: 31 }}
+          style={
+            document.documentElement.clientWidth < 767
+              ? { width: 112, top: 24, marginLeft: "calc(17vw - 27px)" }
+              : { width: 112, top: 24, marginLeft: 31 }
+          }
           onFocus={onFocusWidth}
           onBlur={onBlurWidth}
           inputProps={{ inputMode: "numeric" }}

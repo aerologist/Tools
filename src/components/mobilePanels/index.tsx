@@ -6,11 +6,10 @@ import RoundImg from "../../assets/icons/Round.svg";
 import TrapezoidalImg from "../../assets/icons/Trapezoidal.svg";
 
 interface PropsMobilePanels {
-  activeTabs: number;
   setThumbsSwiper: any;
 }
 
-function MobilePanelsComponent({activeTabs, setThumbsSwiper}: PropsMobilePanels) {
+function MobilePanelsComponent({setThumbsSwiper}: PropsMobilePanels) {
   const imgTabs: string[] = [ ArchedImg, RectangularImg, TrapezoidalImg, RoundImg ];
 
   return (
@@ -27,7 +26,7 @@ function MobilePanelsComponent({activeTabs, setThumbsSwiper}: PropsMobilePanels)
       >
         {imgTabs.map((tab, index) => (
           <SwiperSlide key={index}>
-            <Tab className={activeTabs === 0 ? "active" : ""}>
+            <Tab>
               <img alt="tab" src={tab} />
             </Tab>
           </SwiperSlide>

@@ -13,7 +13,7 @@ import {
   Result,
   Form,
   theme,
-} from "./styles";
+} from "./styled";
 import { ThemeProvider } from "@material-ui/core/styles";
 
 function RectangularShape() {
@@ -63,7 +63,12 @@ function RectangularShape() {
     });
   };
 
-  if (!calculation.bigHeight || !calculation.width || calculation.bigHeight === '0' || calculation.width === '0') {
+  if (
+    !calculation.bigHeight ||
+    !calculation.width ||
+    calculation.bigHeight === "0" ||
+    calculation.width === "0"
+  ) {
     calculation.square = "0";
     calculation.perimeter = "0";
   } else {
@@ -93,8 +98,8 @@ function RectangularShape() {
 
   function onBlurWidth() {
     setStateFocus({ ...stateFocus, focusInputWidth: false });
-    if (calculation.width === '0') {
-      calculation.width = ''
+    if (calculation.width === "0") {
+      calculation.width = "";
     }
   }
 
@@ -104,16 +109,16 @@ function RectangularShape() {
 
   function onBlurHeight() {
     setStateFocus({ ...stateFocus, focusInputHeight: false });
-    if (calculation.bigHeight === '0') {
-      calculation.bigHeight = ''
+    if (calculation.bigHeight === "0") {
+      calculation.bigHeight = "";
     }
   }
 
   const onKeyDownWidth = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
-      if (e.target.value === '0') {
-        calculation.width = ''
+      if (e.target.value === "0") {
+        calculation.width = "";
       }
       if (!calculation.bigHeight) {
         document.getElementById("rectangular_height")?.focus();
@@ -124,8 +129,8 @@ function RectangularShape() {
   const onKeyDownHeight = (e: any) => {
     if (e.keyCode === 13 && e.target.value) {
       e.target.blur();
-      if (e.target.value === '0') {
-        calculation.bigHeight = ''
+      if (e.target.value === "0") {
+        calculation.bigHeight = "";
       }
       if (!calculation.width) {
         document.getElementById("rectangular_width")?.focus();
@@ -138,10 +143,21 @@ function RectangularShape() {
       <h2>{t("rectangular_shape")}</h2>
       <Line />
       <Figure>
-        <Form radius="0">
+        <Form
+          radius="0"
+          style={
+            document.documentElement.clientWidth < 767
+              ? { height: "51vw", width: "51vw" }
+              : { height: "168px", width: "168px" }
+          }
+        >
           <ThirdArrow
             src={BigHorizontalArrow}
-            style={{ marginBottom: 20 }}
+            style={
+              document.documentElement.clientWidth < 767
+                ? { marginBottom: 20, width: "51.5vw" }
+                : { marginBottom: 20 }
+            }
             alt="arrow"
           />
           <ThemeProvider theme={theme}>
@@ -169,7 +185,15 @@ function RectangularShape() {
             />
           </ThemeProvider>
         </Form>
-        <SecondArrow top="2px" src={BigVerticalArrow} alt="arrow" />
+        <SecondArrow
+          src={BigVerticalArrow}
+          alt="arrow"
+          style={
+            document.documentElement.clientWidth < 767
+              ? { top: "2px", height: "51.5vw", left: "calc(16px + 51vw)" }
+              : { top: "2px", left: "180px" }
+          }
+        />
         <ThemeProvider theme={theme}>
           <TextField
             id="rectangular_height"
@@ -179,7 +203,11 @@ function RectangularShape() {
             onKeyUp={onKeyDownHeight}
             type="text"
             variant="outlined"
-            style={{ width: 112, top: 54, marginLeft: 16 }}
+            style={
+              document.documentElement.clientWidth < 767
+                ? { width: 112, top: "calc(25.5vw - 28px)", marginLeft: 16 }
+                : { width: 112, top: 54, marginLeft: 16 }
+            }
             onFocus={onFocusHeight}
             onBlur={onBlurHeight}
             inputProps={{ inputMode: "numeric" }}
