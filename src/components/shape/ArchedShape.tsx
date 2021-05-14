@@ -319,7 +319,7 @@ function ArchedShape() {
         <Form
           radius="25.5vw 25.5vw 0 0"
           style={
-            document.documentElement.clientWidth < 767
+            window.innerWidth < 767
               ? { height: "51vw", width: "51vw" }
               : { height: "168px", width: "168px" }
           }
@@ -358,7 +358,7 @@ function ArchedShape() {
           src={SmallVerticalArrow}
           alt="arrow"
           style={
-            document.documentElement.clientWidth < 767
+            window.innerWidth < 767
               ? {
                   height: "26vw",
                   top: "calc(25.5vw)",
@@ -378,7 +378,7 @@ function ArchedShape() {
             onChange={onValueSmallHeight}
             onKeyUp={onKeyDownSmallHeight}
             style={
-              document.documentElement.clientWidth < 767
+              window.innerWidth < 767
                 ? { width: 112, top: "calc(38.5vw - 28px)", marginLeft: 16 }
                 : { width: 112, top: 98, marginLeft: 16 }
             }
@@ -401,7 +401,7 @@ function ArchedShape() {
         src={BigHorizontalArrow}
         alt="arrow"
         style={
-          document.documentElement.clientWidth < 767
+          window.innerWidth < 767
             ? { marginLeft: 3, width: "51vw" }
             : { marginLeft: 2 }
         }
@@ -415,7 +415,7 @@ function ArchedShape() {
           type="text"
           onChange={onValueWidth}
           style={
-            document.documentElement.clientWidth < 767
+            window.innerWidth < 767
               ? { width: 112, top: 24, marginLeft: "calc(25.5vw - 53px)" }
               : { width: 112, top: 24, marginLeft: 28 }
           }

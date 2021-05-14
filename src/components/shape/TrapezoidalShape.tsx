@@ -306,14 +306,14 @@ function TrapezoidalShape() {
       <Figure>
         <FormTrapezoidalBig
           style={
-            document.documentElement.clientWidth < 767
+            window.innerWidth < 767
               ? { width: "35vw", borderBottom: "50vw solid black" }
               : { width: "172px", borderBottom: "165.5px solid black" }
           }
         >
           <FormTrapezoidalSmall
             style={
-              document.documentElement.clientWidth < 767
+              window.innerWidth < 767
                 ? {
                     width: "calc(35vw - 5px)",
                     borderBottom: "calc(50vw - 5px) solid white",
@@ -330,7 +330,7 @@ function TrapezoidalShape() {
               src={SmallHorizontalArrow}
               alt="arrow"
               style={
-                document.documentElement.clientWidth < 767
+                window.innerWidth < 767
                   ? {
                       zIndex: 11,
                       marginTop: "50vw",
@@ -349,7 +349,7 @@ function TrapezoidalShape() {
                 type="text"
                 variant="outlined"
                 style={
-                  document.documentElement.clientWidth < 767
+                  window.innerWidth < 767
                     ? { width: 112, marginTop: "50vw", zIndex: 11 }
                     : { width: 112, marginTop: 160, zIndex: 11 }
                 }
@@ -373,7 +373,7 @@ function TrapezoidalShape() {
           src={BigVerticalArrow}
           alt="arrow"
           style={
-            document.documentElement.clientWidth < 767
+            window.innerWidth < 767
               ? { left: "calc(34vw + 70px)", top: "2px", height: "49vw" }
               : { marginLeft: 182, top: "2px" }
           }
@@ -388,7 +388,7 @@ function TrapezoidalShape() {
             type="text"
             variant="outlined"
             style={
-              document.documentElement.clientWidth < 767
+              window.innerWidth < 767
                 ? { width: 112, top: "calc(24vw - 28px)", marginLeft: 16 }
                 : { width: 112, top: 54, marginLeft: 16 }
             }
@@ -410,7 +410,7 @@ function TrapezoidalShape() {
       <ThirdArrow
         src={BigHorizontalArrow}
         style={
-          document.documentElement.clientWidth < 767
+          window.innerWidth < 767
             ? { marginBottom: 20, marginLeft: 2, width: "calc(34vw + 52px)" }
             : { marginBottom: 20, marginLeft: 5 }
         }
@@ -426,7 +426,7 @@ function TrapezoidalShape() {
           onChange={onValueWidth}
           onKeyUp={onKeyDownWidth}
           style={
-            document.documentElement.clientWidth < 767
+            window.innerWidth < 767
               ? { width: 112, top: 24, marginLeft: "calc(17vw - 27px)" }
               : { width: 112, top: 24, marginLeft: 31 }
           }

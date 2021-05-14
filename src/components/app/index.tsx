@@ -19,7 +19,7 @@ const App = () => {
   const [mobileVersion, setMobileVersion] = React.useState<boolean>(true);
 
   const onSetVersion = () => {
-    if (document.documentElement.clientWidth >= 767) {
+    if (window.innerWidth >= 767) {
       setMobileVersion(false);
     } else {
       setMobileVersion(true);

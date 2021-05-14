@@ -146,7 +146,7 @@ function RectangularShape() {
         <Form
           radius="0"
           style={
-            document.documentElement.clientWidth < 767
+            window.innerWidth < 767
               ? { height: "51vw", width: "51vw" }
               : { height: "168px", width: "168px" }
           }
@@ -154,7 +154,7 @@ function RectangularShape() {
           <ThirdArrow
             src={BigHorizontalArrow}
             style={
-              document.documentElement.clientWidth < 767
+              window.innerWidth < 767
                 ? { marginBottom: 20, width: "51.5vw" }
                 : { marginBottom: 20 }
             }
@@ -189,7 +189,7 @@ function RectangularShape() {
           src={BigVerticalArrow}
           alt="arrow"
           style={
-            document.documentElement.clientWidth < 767
+            window.innerWidth < 767
               ? { top: "2px", height: "51.5vw", left: "calc(16px + 51vw)" }
               : { top: "2px", left: "180px" }
           }
@@ -204,7 +204,7 @@ function RectangularShape() {
             type="text"
             variant="outlined"
             style={
-              document.documentElement.clientWidth < 767
+              window.innerWidth < 767
                 ? { width: 112, top: "calc(25.5vw - 28px)", marginLeft: 16 }
                 : { width: 112, top: 54, marginLeft: 16 }
             }

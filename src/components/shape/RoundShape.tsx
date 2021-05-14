@@ -84,7 +84,7 @@ function RoundShape() {
         <Form
           radius="25.5vw"
           style={
-            document.documentElement.clientWidth < 767
+            window.innerWidth < 767
               ? { height: "51vw", width: "51vw" }
               : { height: "168px", width: "168px" }
           }
