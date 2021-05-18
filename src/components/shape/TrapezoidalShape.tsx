@@ -18,8 +18,10 @@ import {
   theme,
 } from "./styled";
 import { ThemeProvider } from "@material-ui/core/styles";
+import {useStyles} from './styled';
 
 function TrapezoidalShape() {
+  const classes = useStyles();
   const { t } = useTranslation();
 
   const [calculation, setCalculation] = React.useState<{
@@ -304,40 +306,12 @@ function TrapezoidalShape() {
       <h2>{t("trapecoidal_shape")}</h2>
       <Line />
       <Figure>
-        <FormTrapezoidalBig
-          style={
-            window.innerWidth < 767
-              ? { width: "35vw", borderBottom: "50vw solid black" }
-              : { width: "172px", borderBottom: "165.5px solid black" }
-          }
-        >
-          <FormTrapezoidalSmall
-            style={
-              window.innerWidth < 767
-                ? {
-                    width: "calc(35vw - 5px)",
-                    borderBottom: "calc(50vw - 5px) solid white",
-                    left: "-26px",
-                  }
-                : {
-                    width: "163px",
-                    borderBottom: "160.5px solid white",
-                    left: "-26px",
-                  }
-            }
-          >
+        <FormTrapezoidalBig>
+          <FormTrapezoidalSmall>
             <FirstArrow
               src={SmallHorizontalArrow}
               alt="arrow"
-              style={
-                window.innerWidth < 767
-                  ? {
-                      zIndex: 11,
-                      marginTop: "50vw",
-                      width: "calc(35vw + 24px)",
-                    }
-                  : { zIndex: 11, top: 80 }
-              }
+              className={classes.sixArr}
             />
             <ThemeProvider theme={theme}>
               <TextField
@@ -348,11 +322,7 @@ function TrapezoidalShape() {
                 onKeyUp={onKeyDownMediana}
                 type="text"
                 variant="outlined"
-                style={
-                  window.innerWidth < 767
-                    ? { width: 112, marginTop: "50vw", zIndex: 11 }
-                    : { width: 112, marginTop: 160, zIndex: 11 }
-                }
+                className={classes.inputFive}
                 onFocus={onFocusMediana}
                 onBlur={onBlurMediana}
                 inputProps={{ inputMode: "numeric" }}
@@ -372,11 +342,7 @@ function TrapezoidalShape() {
         <SecondArrow
           src={BigVerticalArrow}
           alt="arrow"
-          style={
-            window.innerWidth < 767
-              ? { left: "calc(34vw + 70px)", top: "2px", height: "49vw" }
-              : { marginLeft: 182, top: "2px" }
-          }
+          className={classes.fiveArr}
         />
         <ThemeProvider theme={theme}>
           <TextField
@@ -387,11 +353,7 @@ function TrapezoidalShape() {
             onKeyUp={onKeyDownHeight}
             type="text"
             variant="outlined"
-            style={
-              window.innerWidth < 767
-                ? { width: 112, top: "calc(24vw - 28px)", marginLeft: 16 }
-                : { width: 112, top: 54, marginLeft: 16 }
-            }
+            className={classes.inputFour}
             onFocus={onFocusHeight}
             onBlur={onBlurHeight}
             inputProps={{ inputMode: "numeric" }}
@@ -409,11 +371,7 @@ function TrapezoidalShape() {
       </Figure>
       <ThirdArrow
         src={BigHorizontalArrow}
-        style={
-          window.innerWidth < 767
-            ? { marginBottom: 20, marginLeft: 2, width: "calc(34vw + 52px)" }
-            : { marginBottom: 20, marginLeft: 5 }
-        }
+        className={classes.thirdArr}
         alt="arrow"
       />
       <ThemeProvider theme={theme}>
@@ -425,11 +383,7 @@ function TrapezoidalShape() {
           value={calculation.width}
           onChange={onValueWidth}
           onKeyUp={onKeyDownWidth}
-          style={
-            window.innerWidth < 767
-              ? { width: 112, top: 24, marginLeft: "calc(17vw - 27px)" }
-              : { width: 112, top: 24, marginLeft: 31 }
-          }
+          className={classes.inputTwo}
           onFocus={onFocusWidth}
           onBlur={onBlurWidth}
           inputProps={{ inputMode: "numeric" }}

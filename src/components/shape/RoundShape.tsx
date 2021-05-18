@@ -82,12 +82,7 @@ function RoundShape() {
       <Line />
       <Figure>
         <Form
-          radius="25.5vw"
-          style={
-            window.innerWidth < 767
-              ? { height: "51vw", width: "51vw" }
-              : { height: "168px", width: "168px" }
-          }
+          radius="calc(50vw - 80px)"
         >
           <FirstArrow
             src={BigVerticalArrow}

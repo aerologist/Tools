@@ -17,8 +17,10 @@ import {
   theme,
 } from "./styled";
 import { ThemeProvider } from "@material-ui/core/styles";
+import {useStyles} from './styled';
 
 function ArchedShape() {
+  const classes = useStyles();
   const { t } = useTranslation();
 
   const [calculation, setCalculation] = React.useState<{
@@ -316,14 +318,7 @@ function ArchedShape() {
       <h2>{t("arched_shape")}</h2>
       <Line />
       <Figure>
-        <Form
-          radius="25.5vw 25.5vw 0 0"
-          style={
-            window.innerWidth < 767
-              ? { height: "51vw", width: "51vw" }
-              : { height: "168px", width: "168px" }
-          }
-        >
+        <Form radius="calc(50vw - 80px) calc(50vw - 80px) 0 0">
           <FirstArrow
             src={BigVerticalArrow}
             alt="arrow"
@@ -357,19 +352,12 @@ function ArchedShape() {
         <SecondArrow
           src={SmallVerticalArrow}
           alt="arrow"
-          style={
-            window.innerWidth < 767
-              ? {
-                  height: "26vw",
-                  top: "calc(25.5vw)",
-                  left: "calc(16px + 51vw)",
-                }
-              : { top: "85px", left: "180px" }
-          }
+          className={classes.secondArr}
         />
         <ThemeProvider theme={theme}>
           <TextField
             id="arched_height_small"
+            className={classes.inputOne}
             ref={sortRef}
             label={t("height")}
             variant="outlined"
@@ -377,11 +365,6 @@ function ArchedShape() {
             type="text"
             onChange={onValueSmallHeight}
             onKeyUp={onKeyDownSmallHeight}
-            style={
-              window.innerWidth < 767
-                ? { width: 112, top: "calc(38.5vw - 28px)", marginLeft: 16 }
-                : { width: 112, top: 98, marginLeft: 16 }
-            }
             onFocus={onFocusSmallHeight}
             onBlur={onBlurSmallHeight}
             inputProps={{ inputMode: "numeric" }}
@@ -399,12 +382,8 @@ function ArchedShape() {
       </Figure>
       <ThirdArrow
         src={BigHorizontalArrow}
+        className={classes.thirdArr}
         alt="arrow"
-        style={
-          window.innerWidth < 767
-            ? { marginLeft: 3, width: "51vw" }
-            : { marginLeft: 2 }
-        }
       />
       <ThemeProvider theme={theme}>
         <TextField
@@ -414,16 +393,11 @@ function ArchedShape() {
           value={calculation.width}
           type="text"
           onChange={onValueWidth}
-          style={
-            window.innerWidth < 767
-              ? { width: 112, top: 24, marginLeft: "calc(25.5vw - 53px)" }
-              : { width: 112, top: 24, marginLeft: 28 }
-          }
           onFocus={onFocusWidth}
           onKeyUp={onKeyDownWidth}
           onBlur={onBlurWidth}
           inputProps={{ inputMode: "numeric" }}
-          className="input"
+          className={classes.inputTwo}
           InputProps={{
             endAdornment: (
               <InputAdornment position="end">

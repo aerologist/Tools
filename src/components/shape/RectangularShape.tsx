@@ -15,8 +15,10 @@ import {
   theme,
 } from "./styled";
 import { ThemeProvider } from "@material-ui/core/styles";
+import {useStyles} from './styled';
 
 function RectangularShape() {
+  const classes = useStyles();
   const { t } = useTranslation();
 
   const [calculation, setCalculation] = React.useState<{
@@ -145,19 +147,10 @@ function RectangularShape() {
       <Figure>
         <Form
           radius="0"
-          style={
-            window.innerWidth < 767
-              ? { height: "51vw", width: "51vw" }
-              : { height: "168px", width: "168px" }
-          }
         >
           <ThirdArrow
             src={BigHorizontalArrow}
-            style={
-              window.innerWidth < 767
-                ? { marginBottom: 20, width: "51.5vw" }
-                : { marginBottom: 20 }
-            }
+            className={classes.oneArr}
             alt="arrow"
           />
           <ThemeProvider theme={theme}>
@@ -188,11 +181,7 @@ function RectangularShape() {
         <SecondArrow
           src={BigVerticalArrow}
           alt="arrow"
-          style={
-            window.innerWidth < 767
-              ? { top: "2px", height: "51.5vw", left: "calc(16px + 51vw)" }
-              : { top: "2px", left: "180px" }
-          }
+          className={classes.fourArr}
         />
         <ThemeProvider theme={theme}>
           <TextField
@@ -203,11 +192,7 @@ function RectangularShape() {
             onKeyUp={onKeyDownHeight}
             type="text"
             variant="outlined"
-            style={
-              window.innerWidth < 767
-                ? { width: 112, top: "calc(25.5vw - 28px)", marginLeft: 16 }
-                : { width: 112, top: 54, marginLeft: 16 }
-            }
+            className={classes.inputThree}
             onFocus={onFocusHeight}
             onBlur={onBlurHeight}
             inputProps={{ inputMode: "numeric" }}
