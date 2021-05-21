@@ -322,7 +322,7 @@ function ArchedShape() {
           <FirstArrow
             src={BigVerticalArrow}
             alt="arrow"
-            style={{ height: "calc(100% - 4px)" }}
+            style={{ height: "calc(100% + 4px)" }}
           />
           <ThemeProvider theme={theme}>
             <TextField
@@ -338,6 +338,7 @@ function ArchedShape() {
               onBlur={onBlurBigHeight}
               inputProps={{ inputMode: "numeric" }}
               InputProps={{
+                className: classes.input,
                 endAdornment: (
                   <InputAdornment position="end">
                     {stateFocus.focusInputBigHeight || calculation.heightBig
@@ -369,6 +370,7 @@ function ArchedShape() {
             onBlur={onBlurSmallHeight}
             inputProps={{ inputMode: "numeric" }}
             InputProps={{
+              className: classes.input,
               endAdornment: (
                 <InputAdornment position="end">
                   {stateFocus.focusInputSmallHeight || calculation.heightSmall
@@ -399,6 +401,7 @@ function ArchedShape() {
           inputProps={{ inputMode: "numeric" }}
           className={classes.inputTwo}
           InputProps={{
+            className: classes.input,
             endAdornment: (
               <InputAdornment position="end">
                 {stateFocus.focusInputWidth || calculation.width

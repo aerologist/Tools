@@ -149,75 +149,82 @@ export const Result = styled.div`
 
 export const useStyles = makeStyles(() => ({
   oneArr: {
+    width: 172,
     marginBottom: 20,
     "@media (max-width: 767px)": {
-      width: "320.5px",
+      width: "336px",
     },
     "@media (max-width: 479px)": {
-      width: "calc(100.5vw - 160px)",
+      width: "calc(100.5vw - 150px)",
     },
   },
   secondArr: {
-    marginLeft: "180px",
-    top: "85px",
+    marginLeft: "174px",
+    top: "82px",
+    height: '88px',
     "@media (max-width: 767px)": {
-      height: "160px",
+      height: "164px",
       top: "162px",
-      marginLeft: "333px",
+      marginLeft: "323px",
     },
     "@media (max-width: 479px)": {
-      height: "calc(50.5vw - 80px)",
+      height: "calc(51.5vw - 80px)",
       top: "calc(50vw - 80px)",
-      marginLeft: "calc(100vw - 144px)",
+      marginLeft: "calc(100vw - 147px - (100vw / 16 - 328px / 16))",
     },
   },
   thirdArr: {
+    marginTop: 13,
     marginLeft: 2,
     "@media (max-width: 767px)": {
-      marginLeft: 3,
-      width: "319px",
+      marginTop: '3px',
+      marginLeft: -3,
+      width: "331px",
     },
     "@media (max-width: 479px)": {
-      marginLeft: 3,
-      width: "calc(100vw - 160px)",
+      marginTop: 'calc(13px - (100vw / 16 - 328px / 16))',
+      marginLeft: -3,
+      width: "calc(100vw - 148px)",
     },
   },
   fourArr: {
-    top: "2px",
-    left: "180px",
+    top: "-2px",
+    left: "173px",
     "@media (max-width: 767px)": {
-      height: "321.5px",
-      left: "337px",
+      height: "331px",
+      left: "320px",
     },
     "@media (max-width: 479px)": {
-      height: "calc(100.5vw - 160px)",
-      left: "calc(100vw - 142px)",
+      height: "calc(100.5vw - 150px )",
+      left: "calc(100vw - 149px - (100vw / 14 - 328px / 14))",
     },
   },
   fiveArr: {
-    marginLeft: 182,
-    top: "2px",
+    marginLeft: 175,
+    height: '170px',
+    top: "-2px",
     "@media (max-width: 767px)": {
-      marginLeft: "333px",
-      height: "314px",
+      marginLeft: "315px",
+      height: "321px",
     },
     "@media (max-width: 479px)": {
-      marginLeft: "calc(100vw - 146px)",
-      height: "calc(100vw - 165px)",
+      marginLeft: "calc(100vw - 154px - (100vw / 14 - 328px / 14))",
+      height: "calc(100vw - 158px)",
     },
   },
   sixArr: {
     zIndex: 11,
-    top: 80,
+    top: 70,
+    width: 145,
     "@media (max-width: 767px)": {
       zIndex: 11,
-      top: "159.5px",
-      width: "291px",
+      top: "144px",
+      width: "306px",
     },
     "@media (max-width: 479px)": {
       zIndex: 11,
-      top: "calc(50vw - 80px)",
-      width: "calc(100vw - 188px)",
+      top: "calc(48.5vw - 82px - (100vw / 14 - 328px / 14))",
+      width: "calc(100vw - 179px)",
     },
   },
   inputOne: {
@@ -234,7 +241,7 @@ export const useStyles = makeStyles(() => ({
   inputTwo: {
     width: 112,
     top: 24,
-    marginLeft: 28,
+    marginLeft: 31,
     "@media (max-width: 767px)": {
       marginLeft: "106px",
     },
@@ -273,4 +280,7 @@ export const useStyles = makeStyles(() => ({
       marginTop: "calc(100vw - 148px)"
     },
   },
+  input: {
+    background: "white",
+  }
 }));

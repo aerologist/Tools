@@ -167,6 +167,7 @@ function RectangularShape() {
               onBlur={onBlurWidth}
               inputProps={{ inputMode: "numeric" }}
               InputProps={{
+                className: classes.input,
                 endAdornment: (
                   <InputAdornment position="end">
                     {stateFocus.focusInputWidth || calculation.width
@@ -197,6 +198,7 @@ function RectangularShape() {
             onBlur={onBlurHeight}
             inputProps={{ inputMode: "numeric" }}
             InputProps={{
+              className: classes.input,
               endAdornment: (
                 <InputAdornment position="end">
                   {stateFocus.focusInputHeight || calculation.bigHeight

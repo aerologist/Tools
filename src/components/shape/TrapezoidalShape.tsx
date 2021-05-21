@@ -327,6 +327,7 @@ function TrapezoidalShape() {
                 onBlur={onBlurMediana}
                 inputProps={{ inputMode: "numeric" }}
                 InputProps={{
+                  className: classes.input,
                   endAdornment: (
                     <InputAdornment position="end">
                       {stateFocus.focusInputMediana || calculation.mediana
@@ -358,6 +359,7 @@ function TrapezoidalShape() {
             onBlur={onBlurHeight}
             inputProps={{ inputMode: "numeric" }}
             InputProps={{
+              className: classes.input,
               endAdornment: (
                 <InputAdornment position="end">
                   {stateFocus.focusInputHeight || calculation.height
@@ -388,6 +390,7 @@ function TrapezoidalShape() {
           onBlur={onBlurWidth}
           inputProps={{ inputMode: "numeric" }}
           InputProps={{
+            className: classes.input,
             endAdornment: (
               <InputAdornment position="end">
                 {stateFocus.focusInputWidth || calculation.width

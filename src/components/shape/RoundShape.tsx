@@ -5,8 +5,11 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import BigVerticalArrow from "../../assets/icons/BigVerticalArrow.svg";
 import { Shape, Line, Figure, FirstArrow, Form, Result, theme } from "./styled";
 import { ThemeProvider } from "@material-ui/core/styles";
+import {useStyles} from './styled';
 
 function RoundShape() {
+  const classes = useStyles();
+
   const { t } = useTranslation();
 
   const [calculation, setCalculation] = React.useState<{
@@ -87,7 +90,7 @@ function RoundShape() {
           <FirstArrow
             src={BigVerticalArrow}
             alt="arrow"
-            style={{ height: "calc(100% - 4px)" }}
+            style={{ height: "calc(100% + 4px)" }}
           />
           <ThemeProvider theme={theme}>
             <TextField
@@ -97,11 +100,12 @@ function RoundShape() {
               onChange={onValueDiameter}
               type="text"
               variant="outlined"
-              style={{ width: 112, marginBottom: 6 }}
+              style={{ width: 112, marginBottom: 6}}
               onFocus={onFocusDiameter}
               onBlur={onBlurDiameter}
               inputProps={{ inputMode: "numeric" }}
               InputProps={{
+                className: classes.input,
                 endAdornment: (
                   <InputAdornment position="end">
                     {stateFocus.focusInputDiameter || calculation.diameter
