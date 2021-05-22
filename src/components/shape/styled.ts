@@ -282,5 +282,12 @@ export const useStyles = makeStyles(() => ({
   },
   input: {
     background: "white",
+  },
+  inputLabelOne: {
+    left: -2
+  },
+  inputLabelTwo: {
+    top: 3,
+    left: -3
   }
 }));

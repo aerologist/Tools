@@ -104,6 +104,7 @@ function RoundShape() {
               onFocus={onFocusDiameter}
               onBlur={onBlurDiameter}
               inputProps={{ inputMode: "numeric" }}
+              InputLabelProps={{className: classes.inputLabelTwo}}
               InputProps={{
                 className: classes.input,
                 endAdornment: (

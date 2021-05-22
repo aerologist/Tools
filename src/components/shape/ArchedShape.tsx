@@ -337,6 +337,7 @@ function ArchedShape() {
               onFocus={onFocusBigHeight}
               onBlur={onBlurBigHeight}
               inputProps={{ inputMode: "numeric" }}
+              InputLabelProps={{className: classes.inputLabelOne}}
               InputProps={{
                 className: classes.input,
                 endAdornment: (
