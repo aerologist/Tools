@@ -6,7 +6,7 @@ import {GlobalStyle} from "./globalStyle";
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 
-ReactDOM.render(
+ReactDOM.render( 
   <React.StrictMode>
     <GlobalStyle/>
     <Suspense fallback="">
