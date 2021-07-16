@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.js": "/static/js/main.eb75978d.chunk.js",
+    "main.js.map": "/static/js/main.eb75978d.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.e9b67e0b.js",
+    "runtime-main.js.map": "/static/js/runtime-main.e9b67e0b.js.map",
+    "static/css/2.b9271814.chunk.css": "/static/css/2.b9271814.chunk.css",
+    "static/js/2.a98de615.chunk.js": "/static/js/2.a98de615.chunk.js",
+    "static/js/2.a98de615.chunk.js.map": "/static/js/2.a98de615.chunk.js.map",
+    "index.html": "/index.html",
+    "service-worker.js": "/service-worker.js",
+    "service-worker.js.map": "/service-worker.js.map",
+    "static/css/2.b9271814.chunk.css.map": "/static/css/2.b9271814.chunk.css.map",
+    "static/js/2.a98de615.chunk.js.LICENSE.txt": "/static/js/2.a98de615.chunk.js.LICENSE.txt",
+    "static/media/Arched.75f85b16.svg": "/static/media/Arched.75f85b16.svg",
+    "static/media/BigHorizontalArrow.111a89ad.svg": "/static/media/BigHorizontalArrow.111a89ad.svg",
+    "static/media/BigVerticalArrow.a1ff273e.svg": "/static/media/BigVerticalArrow.a1ff273e.svg",
+    "static/media/Rectangular.f84f1c7b.svg": "/static/media/Rectangular.f84f1c7b.svg",
+    "static/media/Round.8a7a4746.svg": "/static/media/Round.8a7a4746.svg",
+    "static/media/SmallHorizontalArrow.3737b9c2.svg": "/static/media/SmallHorizontalArrow.3737b9c2.svg",
+    "static/media/SmallVerticalArrow.3d3e1400.svg": "/static/media/SmallVerticalArrow.3d3e1400.svg",
+    "static/media/Trapezoidal.8843f7e0.svg": "/static/media/Trapezoidal.8843f7e0.svg",
+    "static/media/getFetch.cjs": "/static/media/getFetch.d7d6010d.cjs"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e9b67e0b.js",
+    "static/css/2.b9271814.chunk.css",
+    "static/js/2.a98de615.chunk.js",
+    "static/js/main.eb75978d.chunk.js"
+  ]
+}

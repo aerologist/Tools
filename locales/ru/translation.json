@@ -1,0 +1,16 @@
+{
+  "drift_cross_section_parameters" : "Параметры поперечного сечения выработки",
+  "drift_cross_section": "Сечение выработки",
+  "arched_shape": "Арочная форма",
+  "rectangular_shape": "Прямоугольная форма",
+  "trapecoidal_shape": "Трапецевидная форма",
+  "round_shape": "Круглая форма",
+  "width": "Ширина",
+  "height": "Высота",
+  "diameter": "Диаметр",
+  "median": "Средняя линия",
+  "area": "Площадь",
+  "perimeter": "Периметр",
+  "meters": "м",
+  "square_meters": "м²"
+}
